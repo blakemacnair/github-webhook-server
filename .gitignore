@@ -1,2 +1,4 @@
 # TODO: Note sure if I need to / should ignore this, but I will for now
 __pycache__
+*.DS_STORE
+.idea
