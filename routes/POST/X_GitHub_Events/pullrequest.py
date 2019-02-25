@@ -7,5 +7,8 @@ class PullRequest:
         self.args = args
 
     def handle_request(self):
-        print("handling...")
-        pass
+        pr = self.args['pull_request']
+        title = pr['title']
+        state = pr['state']
+        merged = pr['merged']
+        return {'title': title, 'state': state, 'merged': merged}

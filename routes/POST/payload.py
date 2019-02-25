@@ -8,6 +8,8 @@ parser.add_argument('X-GitHub-Event', type=str, location='headers')
 parser.add_argument('X-Hub-Signature', type=str, location='headers')
 parser.add_argument('X-GitHub-Delivery', type=str, location='headers')
 
+parser.add_argument('pull_request', type=dict, location='json')
+
 
 class GithubWebhookPayload(Resource):
     def post(self):
@@ -20,6 +22,8 @@ class GithubWebhookPayload(Resource):
         if event_type == 'pull_request':
             responder = PullRequest(args)
             response = responder.handle_request()
+
+            response_object['Response'] = response
             response_code = 200
         else:
             response_object['Response'] = 'Event type not recognized'
