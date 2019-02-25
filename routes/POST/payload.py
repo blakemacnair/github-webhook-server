@@ -13,17 +13,16 @@ class GithubWebhookPayload(Resource):
     def post(self):
         args = parser.parse_args()
 
-        responseCode = 200
-        responseObject = {'Event': args['X-GitHub-Event']}
+        response_object = {'Event': args['X-GitHub-Event']}
 
         event_type = args['X-GitHub-Event']
 
         if event_type == 'pull_request':
             responder = PullRequest(args)
             response = responder.handle_request()
-            responseCode = 200
+            response_code = 200
         else:
-            responseObject['Response'] = 'Event type not recognized'
-            responseCode = 400
+            response_object['Response'] = 'Event type not recognized'
+            response_code = 400
 
-        return responseObject, responseCode
+        return response_object, response_code

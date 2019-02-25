@@ -7,4 +7,5 @@ class PullRequest:
         self.args = args
 
     def handle_request(self):
+        print("handling...")
         pass
