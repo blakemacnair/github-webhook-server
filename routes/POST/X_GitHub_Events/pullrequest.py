@@ -17,4 +17,4 @@ class PullRequest:
         return {'title': title, 'state': state, 'merged': merged}
 
     def handle_pr_merged(self):
-        subprocess.run(["afplay", "sounds/airhorn.wav"])
+        subprocess.run(["aplay", "sounds/airhorn.wav"])
