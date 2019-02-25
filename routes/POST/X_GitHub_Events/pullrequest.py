@@ -1,4 +1,4 @@
-from flask_restful import Resource, reqparse
+import subprocess
 
 
 class PullRequest:
@@ -11,4 +11,10 @@ class PullRequest:
         title = pr['title']
         state = pr['state']
         merged = pr['merged']
+        if merged:
+            self.handle_pr_merged()
+
         return {'title': title, 'state': state, 'merged': merged}
+
+    def handle_pr_merged(self):
+        subprocess.run(["afplay", "sounds/airhorn.wav"])
